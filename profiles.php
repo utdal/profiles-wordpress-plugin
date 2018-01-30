@@ -52,3 +52,4 @@ spl_autoload_register(function ($class_name) {
 
 // Define WordPress hooks
 add_action('init', [(new Profiles\Shortcodes\Publications(Profiles\VERSION)), 'register']);
+add_action('init', [(new Profiles\Shortcodes\Profile(Profiles\VERSION)), 'register']);
