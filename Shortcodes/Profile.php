@@ -11,12 +11,12 @@ class Profile extends Shortcode
     public $default_attributes = [
         'person' => 'gnade',
         'with_data' => 1,
-        'name' => true,
-        'image' => true,
-        'url' => true,
-        'awards' => true,
-        'publications' => true,
-        'support' => true,
+        'show_name' => true,
+        'show_image' => true,
+        'show_url' => true,
+        'show_awards' => true,
+        'show_publications' => true,
+        'show_support' => true,
         'api' => 'https://ordev.utdallas.edu/profiles/api',
     ];
 
@@ -24,11 +24,12 @@ class Profile extends Shortcode
     public $attribute_filters = [
         'person' => FILTER_SANITIZE_FULL_SPECIAL_CHARS,
         'with_data' => FILTER_VALIDATE_INT,
-        'name' => FILTER_VALIDATE_BOOLEAN,
-        'image' => FILTER_VALIDATE_BOOLEAN,
-        'url' => FILTER_VALIDATE_BOOLEAN,
-        'publications' => FILTER_VALIDATE_BOOLEAN,
-        'support' => FILTER_VALIDATE_BOOLEAN,
+        'show_name' => FILTER_VALIDATE_BOOLEAN,
+        'show_image' => FILTER_VALIDATE_BOOLEAN,
+        'show_url' => FILTER_VALIDATE_BOOLEAN,
+        'show_awards' => FILTER_VALIDATE_BOOLEAN,
+        'show_publications' => FILTER_VALIDATE_BOOLEAN,
+        'show_support' => FILTER_VALIDATE_BOOLEAN,
         'api' => FILTER_VALIDATE_URL,
     ];
 
@@ -39,6 +40,9 @@ class Profile extends Shortcode
      */
     public function render()
     {
+        set_query_var('profile_options', $this->attributes); // pass $this->attributes as $person_options to the template
+        set_query_var('person', $this->person); // pass $this->attributes as $person_options to the template
+
         // CSS
         // wp_enqueue_style('profiles_publications_css', $this->public_url . '/css/profiles-profile.css', [], $this->version);
 
@@ -47,10 +51,10 @@ class Profile extends Shortcode
         wp_localize_script('profiles_profile_js', 'profiles_profile_options', $this->attributes);
         wp_enqueue_script('profiles_profile_js');
 
-        $person = $this->person;
-
         ob_start();
 
+        $person = $this->person;
+        $profile_options = $this->attributes;
         include($this->views_dir . '/profiles-profile.php');
 
         return ob_get_clean();

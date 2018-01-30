@@ -16,19 +16,21 @@ var profile_reader = (function($, options, undefined) {
   var makeDataList = function (data, type, $target) {
     var $template = $target.find('.item-template');
 
-    for (var i = 0; i < data.length; i++) {
-      if (data[i].type === type) {
-        var data_content = data[i].data;
+    if ($template.length > 0) {
+      for (var i = 0; i < data.length; i++) {
+        if (data[i].type === type) {
+          var data_content = data[i].data;
 
-        if ($template.length > 0 && typeof data_content === "object") {
-          var $list_item_template = $template.clone().removeClass('item-template');
-          $list_item_template.find('[data-item-text]').each(function() {
-            var $template_item = $(this);
-            $template_item.text(data_content[$template_item.data('item-text')])
-          });
-          $list_item_template.appendTo($target);
+          if (typeof data_content === "object") {
+            var $list_item_template = $template.clone().removeClass('item-template');
+            $list_item_template.find('[data-item-text]').each(function() {
+              var $template_item = $(this);
+              $template_item.text(data_content[$template_item.data('item-text')])
+            });
+            $list_item_template.appendTo($target);
+          }
+
         }
-
       }
     }
 
@@ -36,38 +38,38 @@ var profile_reader = (function($, options, undefined) {
   }
 
   var setName = function(profile) {
-    if (options.name && profile.name && $name_section.length > 0) {
+    if (profile.name && $name_section.length > 0) {
       $name_section.text(profile.name);
     }
   }
 
   var setImage = function(profile) {
-    if (options.image && profile.image_url && $image_section.length > 0) {
+    if (profile.image_url && $image_section.length > 0) {
       $('<img src="' + profile.image_url + '" alt="profile image">').appendTo($image_section);
     }
   }
 
   var setLink = function(profile) {
-    if (options.url && profile.url && $url_element.length > 0) {
+    if (profile.url && $url_element.length > 0) {
       $url_element.attr('href', profile.url);
     }
   }
-  
+
   var setPublications = function(profile) {
-    if (options.publications) {
-      makeDataList(profile.data, 'publications', $publication_section);      
+    if (profile.data && $publication_section.length > 0) {
+      makeDataList(profile.data, 'publications', $publication_section);
     }
   }
 
   var setAwards = function(profile) {
-    if (options.awards) {
-      makeDataList(profile.data, 'awards', $awards_section);      
+    if (profile.data && $awards_section.length > 0) {
+      makeDataList(profile.data, 'awards', $awards_section);
     }
   }
-  
+
   var setSupport = function(profile) {
-    if (options.support) {
-      makeDataList(profile.data, 'support', $support_section);      
+    if (profile.data && $support_section.length > 0) {
+      makeDataList(profile.data, 'support', $support_section);
     }
   }
 
