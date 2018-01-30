@@ -18,7 +18,7 @@ Just add the shortcode to a page:
 
 `[publications person="user.slug" api="https://url.example/api"]`
 
-`[profile person="user.slug" name="true" image="true" url="true" publications="true" support="true" api="https://url.example/api"]`
+`[profile person="user.slug" name="true" image="true" url="true" publications="true" support="true" awards="true" api="https://url.example/api"]`
 
 ## Development
 

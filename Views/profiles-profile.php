@@ -5,13 +5,24 @@
     </a>
     <div class="profile-image"></div>
 
+    <h4>Awards</h4>
+    <ul class="profile-awards">
+        <li class="item-template">
+            <span data-item-text="name"></span> - <span data-item-text="organization"></span>
+        </li>
+    </ul>
+
     <h4>Support</h4>
-    <div class="profile-support" data-item-text="title">
-        <span class="template">
-            <strong>$<span data-item-text="amount"></span></strong> - <i><span data-item-text="sponsor"></span></i> (<span data-item-text="start_date"></span> - <span data-item-text="end_date"></span>)
-        </span>
-    </div>
+    <ul class="profile-support">
+        <li class="item-template">
+            <span data-item-text="title"></span> <strong>$<span data-item-text="amount"></span></strong> - <i><span data-item-text="sponsor"></span></i> (<span data-item-text="start_date"></span> - <span data-item-text="end_date"></span>)
+        </li>
+    </ul>
 
     <h4>Publications</h4>
-    <div class="profile-publications" data-item-text="name"></div>
+    <ul class="profile-publications">
+        <li class="item-template">
+            <span data-item-text="name"></span>
+        </li>
+    </ul>
 </div>

@@ -11,39 +11,28 @@ var profile_reader = (function($, options, undefined) {
   var $url_element = $profile_section.find('.profile-url');
   var $publication_section = $profile_section.find('.profile-publications');
   var $support_section = $profile_section.find('.profile-support');
+  var $awards_section = $profile_section.find('.profile-awards');
 
   var makeDataList = function (data, type, $target) {
-    var $data_list = $('<ul class="list-group list-group-flush"></ul>');
-    var $template = $target.find('.template');
+    var $template = $target.find('.item-template');
 
     for (var i = 0; i < data.length; i++) {
       if (data[i].type === type) {
-        var $list_item = $('<li class="list-group-item"></li>');
         var data_content = data[i].data;
 
-        if (typeof data_content === "object") {
-          // Set the main list item text
-          if ($target.data('item-text')) {
-            $list_item.text(data_content[$target.data('item-text')]);
-          }
-
-          // Set any additional content based on the template
-          if ($template.length > 0) {
-            var $list_item_template = $template.clone();
-            $list_item_template.find('[data-item-text]').each(function() {
-              var $template_item = $(this);
-              $template_item.text(data_content[$template_item.data('item-text')])
-            });
-            $list_item_template.appendTo($list_item);
-          }
+        if ($template.length > 0 && typeof data_content === "object") {
+          var $list_item_template = $template.clone().removeClass('item-template');
+          $list_item_template.find('[data-item-text]').each(function() {
+            var $template_item = $(this);
+            $template_item.text(data_content[$template_item.data('item-text')])
+          });
+          $list_item_template.appendTo($target);
         }
 
-        $list_item.appendTo($data_list);
       }
     }
 
     $template.css('display', 'none');
-    $data_list.appendTo($target);
   }
 
   var setName = function(profile) {
@@ -65,11 +54,21 @@ var profile_reader = (function($, options, undefined) {
   }
   
   var setPublications = function(profile) {
-    makeDataList(profile.data, 'publications', $publication_section);
+    if (options.publications) {
+      makeDataList(profile.data, 'publications', $publication_section);      
+    }
+  }
+
+  var setAwards = function(profile) {
+    if (options.awards) {
+      makeDataList(profile.data, 'awards', $awards_section);      
+    }
   }
   
   var setSupport = function(profile) {
-    makeDataList(profile.data, 'support', $support_section);
+    if (options.support) {
+      makeDataList(profile.data, 'support', $support_section);      
+    }
   }
 
   // Handle the returned API results
@@ -79,6 +78,7 @@ var profile_reader = (function($, options, undefined) {
         setName(results.profile[k]);
         setImage(results.profile[k]);
         setLink(results.profile[k]);
+        setAwards(results.profile[k]);
         setPublications(results.profile[k]);
         setSupport(results.profile[k]);
       }

@@ -14,6 +14,7 @@ class Profile extends Shortcode
         'name' => true,
         'image' => true,
         'url' => true,
+        'awards' => true,
         'publications' => true,
         'support' => true,
         'api' => 'https://ordev.utdallas.edu/profiles/api',
