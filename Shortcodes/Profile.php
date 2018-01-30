@@ -40,9 +40,6 @@ class Profile extends Shortcode
      */
     public function render()
     {
-        set_query_var('profile_options', $this->attributes); // pass $this->attributes as $person_options to the template
-        set_query_var('person', $this->person); // pass $this->attributes as $person_options to the template
-
         // CSS
         // wp_enqueue_style('profiles_publications_css', $this->public_url . '/css/profiles-profile.css', [], $this->version);
 
@@ -53,9 +50,17 @@ class Profile extends Shortcode
 
         ob_start();
 
-        $person = $this->person;
-        $profile_options = $this->attributes;
-        include($this->views_dir . '/profiles-profile.php');
+        // If the theme has a template-parts/content-profile.php file, use that to render the Person.
+        // Otherwise, use the default view partial included in this theme.
+        if (locate_template('template-parts/content-profile.php')) {
+            set_query_var('profile_options', $this->attributes); // pass $this->attributes as $person_options to the template
+            set_query_var('person', $this->person); // pass $this->attributes as $person_options to the template
+            get_template_part('template-parts/content', 'profile');
+        } else {
+            $person = $this->person;
+            $profile_options = $this->attributes;
+            include($this->views_dir . '/content-profile.php');
+        }
 
         return ob_get_clean();
     }

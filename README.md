@@ -22,6 +22,8 @@ Just add the shortcode to a page:
 
 (The defaults for all of the `show_x` attributes are true.)
 
+If you want to override how the profile is displayed, then copy `Views/content-profile.php` to `<your theme folder>/template-parts/content-profile.php` and modify as desired. Do not change the CSS class names, however, because this is how the JS identifies where to insert the API data.
+
 ## Development
 
 ### CSS / Sass
