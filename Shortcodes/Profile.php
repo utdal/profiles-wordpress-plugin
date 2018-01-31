@@ -32,7 +32,7 @@ class Profile extends Shortcode
     ];
 
     /**
-     * Renders the org chart shortcode.
+     * Renders the shortcode.
      * 
      * @return string
      */
@@ -40,11 +40,11 @@ class Profile extends Shortcode
     {
         ob_start();
 
-        // If the theme has a template-parts/content-profile.php file, use that to render the Person.
+        // If the theme has a template-parts/content-profile.php file, use that to render the profile.
         // Otherwise, use the default view partial included in this plugin.
         if (locate_template('template-parts/content-profile.php')) {
-            set_query_var('profile_options', $this->attributes); // pass $this->attributes as $person_options to the template
-            set_query_var('person', $this->person); // pass $this->attributes as $person_options to the template
+            set_query_var('profile_options', $this->attributes); // pass $this->attributes as $profile_options to the template
+            set_query_var('person', $this->person); // pass $this->person as $person to the template
             get_template_part('template-parts/content', 'profile');
         } else {
             $person = $this->person;
