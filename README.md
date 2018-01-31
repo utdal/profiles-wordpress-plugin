@@ -16,8 +16,6 @@ TBD
 
 Just add the shortcode to a page:
 
-`[publications person="user.slug" api="https://url.example/api"]`
-
 `[profile person="user.slug" show_name="true" show_image="true" show_url="true" show_publications="true" show_support="true" show_awards="true" api="https://url.example/api"]`
 
 (The defaults for all of the `show_x` attributes are true.)

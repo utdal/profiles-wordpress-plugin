@@ -9,9 +9,7 @@ var uglify = require('gulp-uglify');
 
 var paths = {
   public: {
-    publications: {
-      source: 'public/css/source/publications',
-    },
+    source: 'public/css/source',
     css:   'public/css',
     fonts: 'public/fonts',
     js:    'public/js',
@@ -47,19 +45,14 @@ function compile_sass(sass_path, css_path) {
 
 /** Tasks */
 
-// Compile Publications Sass
-gulp.task('publications-sass', function () {
-  return compile_sass(paths.public.publications.source + '/profiles-publications.scss', paths.public.css);
-});
-
 // Sass
-gulp.task('sass', [
-  'publications-sass',
-]);
+gulp.task('sass', function () {
+  return compile_sass(paths.public.source + '/profiles.scss', paths.public.css);
+});
 
 // Watch
 gulp.task('watch', function() {
-  gulp.watch(paths.public.publications.source + '/**/*.scss', ['publications-sass']);
+  gulp.watch(paths.public.source + '/**/*.scss', ['sass']);
 });
 
 // Default
