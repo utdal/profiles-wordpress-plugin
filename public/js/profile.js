@@ -51,43 +51,43 @@ var profile_reader = (function($, undefined) {
     }
 
     $template.css('display', 'none');
-  }
+  };
 
   var setName = function(profile) {
     if (profile.name && $name_section.length > 0) {
       $name_section.text(profile.name);
     }
-  }
+  };
 
   var setImage = function(profile) {
     if (profile.image_url && $image_section.length > 0) {
       $('<img src="' + profile.image_url + '" alt="profile image">').appendTo($image_section);
     }
-  }
+  };
 
   var setLink = function(profile) {
     if (profile.url && $url_element.length > 0) {
       $url_element.attr('href', profile.url);
     }
-  }
+  };
 
   var setPublications = function(profile) {
     if (profile.data && $publication_section.length > 0) {
       makeDataList(profile.data, 'publications', $publication_section);
     }
-  }
+  };
 
   var setAwards = function(profile) {
     if (profile.data && $awards_section.length > 0) {
       makeDataList(profile.data, 'awards', $awards_section);
     }
-  }
+  };
 
   var setSupport = function(profile) {
     if (profile.data && $support_section.length > 0) {
       makeDataList(profile.data, 'support', $support_section);
     }
-  }
+  };
 
   // Handle the returned API results
   var handleResults = function(results) {
@@ -106,7 +106,7 @@ var profile_reader = (function($, undefined) {
   // If there was an error retrieving the data, show it
   var showAjaxError = function(jqxhr, textStatus, errorThrown) {
     $publication_section.html(errorThrown);
-  }
+  };
 
   // GET the profile data from the API
   var get = function() {
