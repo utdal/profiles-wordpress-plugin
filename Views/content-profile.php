@@ -2,7 +2,7 @@
 extract($profile_options);
 ?>
 <!-- Profile Template -->
-<div id="<?= $person ?>_profile" class="profiles-plugin profile">
+<div class="profiles-plugin profile" data-person="<?= $person ?>" data-api-url="<?= $api ?>" >
     <?php if ($show_name): ?>
         <a class="profile-url">
             <h3 class="profile-name"></h3>

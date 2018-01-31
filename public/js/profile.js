@@ -1,17 +1,33 @@
 // Profile Reader Module
-var profile_reader = (function($, options, undefined) {
+var profile_reader = (function($, undefined) {
 
-  var person = options.person;
-  var api_url = options.api;
-  var with_data = options.with_data;
+  var person;
+  var api_url;
+  var $profile_section;
+  var $name_section;
+  var $image_section;
+  var $url_element;
+  var $publication_section;
+  var $support_section;
+  var $awards_section;
 
-  var $profile_section = $('#' + person + '_profile');
-  var $name_section = $profile_section.find('.profile-name');
-  var $image_section = $profile_section.find('.profile-image');
-  var $url_element = $profile_section.find('.profile-url');
-  var $publication_section = $profile_section.find('.profile-publications');
-  var $support_section = $profile_section.find('.profile-support');
-  var $awards_section = $profile_section.find('.profile-awards');
+  var init = function() {
+    $profile_section = $('.profiles-plugin.profile');
+
+    if ($profile_section.length > 0) {
+      person = $profile_section.data('person');
+      api_url = $profile_section.data('api-url');
+      $name_section = $profile_section.find('.profile-name');
+      $image_section = $profile_section.find('.profile-image');
+      $url_element = $profile_section.find('.profile-url');
+      $publication_section = $profile_section.find('.profile-publications');
+      $support_section = $profile_section.find('.profile-support');
+      $awards_section = $profile_section.find('.profile-awards');
+      return true;
+    }
+
+    return false;
+  };
 
   var makeDataList = function (data, type, $target) {
     var $template = $target.find('.item-template');
@@ -99,7 +115,7 @@ var profile_reader = (function($, options, undefined) {
       type: 'GET',
       data: {
         person: person,
-        with_data: with_data,
+        with_data: '1',
       },
       dataType: 'json',
       success: handleResults,
@@ -108,14 +124,17 @@ var profile_reader = (function($, options, undefined) {
   };
 
   return {
+    init: init,
     get: get,
   };
 
-})(jQuery, profiles_profile_options);
+})(jQuery);
 
 // On Page Load, get the specified profiles
 jQuery(document).ready(function($) {
 
-  profile_reader.get();
+  if (profile_reader.init()) {
+    profile_reader.get();
+  }
 
 });

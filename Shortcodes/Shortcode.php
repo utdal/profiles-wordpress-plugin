@@ -22,9 +22,6 @@ abstract class Shortcode
     /** @var string Public directory path */
     public $views_dir;
 
-    /** @var string Public URL */
-    public $public_url;
-
     /**
      * Shortcode class constructor.
      */
@@ -32,7 +29,6 @@ abstract class Shortcode
     {
         $this->version = $version;
         $this->views_dir = plugin_dir_path(dirname(__FILE__)) . 'Views';
-        $this->public_url = plugin_dir_url(dirname(__FILE__)) . 'public';
         $this->name = $this->name ?: strtolower((new \ReflectionClass($this))->getShortName());
     }
 

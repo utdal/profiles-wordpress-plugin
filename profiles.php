@@ -50,5 +50,19 @@ spl_autoload_register(function ($class_name) {
     }
 });
 
+/**
+ * Load scripts for the plugin
+ */
+function profiles_enqueue_scripts()
+{
+    $public_url = plugin_dir_url(__FILE__) . 'public';
+    // CSS
+    wp_enqueue_style('profiles_css', $public_url . '/css/profiles.css', [], Profiles\VERSION);
+
+    // JS
+    wp_enqueue_script('profiles_js', $public_url . '/js/profile.js', ['jquery'], Profiles\VERSION);
+}
+
 // Define WordPress hooks
+add_action('wp_enqueue_scripts', 'profiles_enqueue_scripts');
 add_action('init', [(new Profiles\Shortcodes\Profile(Profiles\VERSION)), 'register']);
