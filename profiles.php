@@ -1,7 +1,4 @@
 <?php
-
-use Profiles\Shortcodes\Publications;
-
 /**
  * The plugin bootstrap file
  *
