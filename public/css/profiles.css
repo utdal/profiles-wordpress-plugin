@@ -4,8 +4,58 @@ Profiles Plugin CSS (generated from Sass)
 /** Variables */
 /** Sass styles for publications */
 .profiles-plugin.profile .item-template {
-  display: none; }
-
+  display: none;
+}
+.profiles-plugin.profile {
+  clear: both;
+}
+.profiles-plugin.profile .info {
+  float: left;
+  margin-left: 20px;
+  width: 70%;
+  margin-bottom: 30px;
+}
+.profiles-plugin.profile ul{
+  -webkit-padding-start: 20px;
+  padding-bottom: 0px;
+}
+.profiles-plugin.profile .contact-info {
+  margin-left: 15px;
+  -webkit-padding-start: 0px;
+  -webkit-margin-start: 0px;
+  margin-bottom: 15px;
+}
+.profiles-plugin.profile .contact-info li{
+  list-style: none;
+}
+.profiles-plugin.profile .profile-image {
+  float: left;
+  width: 20%;
+  height: auto;
+  margin-bottom: 30px;
+}
+ul.profile-preparations li{
+  list-style-type: square;
+  color: grey;
+  font-size: 12px;
+}
+ul.profile-awards{
+  -webkit-padding-start: 0px;
+  padding-bottom: 0px;
+}
+ul.profile-awards li{
+  font-size: 12px;
+}
+ul.profile-appointments li{
+  font-size: 12px;
+}
+.profiles-plugin.profile .profile-publications {
+  max-height: 150px;
+  overflow: hidden;
+  overflow-y: scroll;
+  margin-bottom: 20px;
+  font-size: 12px;
+}
 
 
 /*# sourceMappingURL=profiles.css.map */

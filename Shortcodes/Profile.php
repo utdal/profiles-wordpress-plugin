@@ -13,9 +13,13 @@ class Profile extends Shortcode
         'show_name' => true,
         'show_image' => true,
         'show_url' => true,
+        'show_preparation' => true,
         'show_awards' => true,
+        'show_appointments' => true,
         'show_publications' => true,
         'show_support' => true,
+        'publications_only' => false,
+        'publication_limit' => 10,
         'api' => 'https://ordev.utdallas.edu/profiles/api',
     ];
 
@@ -25,15 +29,19 @@ class Profile extends Shortcode
         'show_name' => FILTER_VALIDATE_BOOLEAN,
         'show_image' => FILTER_VALIDATE_BOOLEAN,
         'show_url' => FILTER_VALIDATE_BOOLEAN,
+        'show_preparation' => FILTER_VALIDATE_BOOLEAN,
         'show_awards' => FILTER_VALIDATE_BOOLEAN,
+        'show_appointments' => FILTER_VALIDATE_BOOLEAN,
         'show_publications' => FILTER_VALIDATE_BOOLEAN,
         'show_support' => FILTER_VALIDATE_BOOLEAN,
+        'publications_only' => FILTER_VALIDATE_BOOLEAN,
+        'publication_limit' => FILTER_VALIDATE_INT,
         'api' => FILTER_VALIDATE_URL,
     ];
 
     /**
      * Renders the shortcode.
-     * 
+     *
      * @return string
      */
     public function render()
