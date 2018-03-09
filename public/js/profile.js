@@ -95,37 +95,37 @@ var profile_reader = (function($, undefined) {
 
   var setInfo = function(profile) {
     if (profile.url && $url_element[profile.slug].length > 0) {
-      makeDataList(profile.data, 'information', $info_section[profile.slug]);
+      makeDataList(profile.information, 'information', $info_section[profile.slug]);
     }
   };
 
   var setPreparations = function(profile) {
-    if (profile.data && $preperation_section[profile.slug].length > 0) {
-      makeDataList(profile.data, 'preparation', $preperation_section[profile.slug]);
+    if (profile.preparation && $preperation_section[profile.slug].length > 0) {
+      makeDataList(profile.preparation, 'preparation', $preperation_section[profile.slug]);
     }
   };
 
   var setAppointments = function(profile) {
-    if (profile.data && $appointment_section[profile.slug].length > 0) {
-      makeDataList(profile.data, 'appointments', $appointment_section[profile.slug]);
+    if (profile.appointments && $appointment_section[profile.slug].length > 0) {
+      makeDataList(profile.appointments, 'appointments', $appointment_section[profile.slug]);
     }
   };
 
   var setPublications = function(profile) {
-    if (profile.data && $publication_section[profile.slug].length > 0) {
-      makeDataList(profile.data, 'publications', $publication_section[profile.slug]);
+    if (profile.publications && $publication_section[profile.slug].length > 0) {
+      makeDataList(profile.publications.slice(0, publication_limit), 'publications', $publication_section[profile.slug]);
     }
   };
 
   var setAwards = function(profile) {
-    if (profile.data && $awards_section[profile.slug].length > 0) {
-      makeDataList(profile.data, 'awards', $awards_section[profile.slug]);
+    if (profile.awards && $awards_section[profile.slug].length > 0) {
+      makeDataList(profile.awards, 'awards', $awards_section[profile.slug]);
     }
   };
 
   var setSupport = function(profile) {
-    if (profile.data && $support_section[profile.slug].length > 0) {
-      makeDataList(profile.data, 'support', $support_section[profile.slug]);
+    if (profile.support && $support_section[profile.slug].length > 0) {
+      makeDataList(profile.support, 'support', $support_section[profile.slug]);
     }
   };
 
