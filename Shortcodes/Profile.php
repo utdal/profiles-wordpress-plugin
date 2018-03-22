@@ -20,7 +20,7 @@ class Profile extends Shortcode
         'show_support' => true,
         'publications_only' => false,
         'publication_limit' => 10,
-        'api' => 'https://ordev.utdallas.edu/profiles/api',
+        'api' => 'https://profiles.utdallas.edu/api/v1',
     ];
 
     /** @var array Filters to apply to the shortcode attributes. */
