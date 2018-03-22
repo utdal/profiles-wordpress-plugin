@@ -100,25 +100,29 @@ var profile_reader = (function($, undefined) {
   };
 
   var setPreparations = function(profile) {
-    if (profile.preparation && $preperation_section[profile.slug].length > 0) {
+    if (profile.preparation.length > 0 && $preperation_section[profile.slug].length > 0) {
       makeDataList(profile.preparation, 'preparation', $preperation_section[profile.slug]);
     }
   };
 
   var setAppointments = function(profile) {
-    if (profile.appointments && $appointment_section[profile.slug].length > 0) {
+    if (profile.appointments.length > 0 && $appointment_section[profile.slug].length > 0) {
       makeDataList(profile.appointments, 'appointments', $appointment_section[profile.slug]);
+    }else{
+      $appointment_section[profile.slug].parent('.section-container').hide();
     }
   };
 
   var setPublications = function(profile) {
-    if (profile.publications && $publication_section[profile.slug].length > 0) {
+    if (profile.publications.length > 0 && $publication_section[profile.slug].length > 0) {
       makeDataList(profile.publications.slice(0, publication_limit), 'publications', $publication_section[profile.slug]);
+    }else{
+      $publication_section[profile.slug].parent('.section-container').hide();
     }
   };
 
   var setAwards = function(profile) {
-    if (profile.awards && $awards_section[profile.slug].length > 0) {
+    if (profile.awards.length > 0 && $awards_section[profile.slug].length > 0) {
       makeDataList(profile.awards, 'awards', $awards_section[profile.slug]);
     }
   };
@@ -126,6 +130,8 @@ var profile_reader = (function($, undefined) {
   var setSupport = function(profile) {
     if (profile.support && $support_section[profile.slug].length > 0) {
       makeDataList(profile.support, 'support', $support_section[profile.slug]);
+    }else{
+      $support_section[profile.slug].parent('.section-container').hide();
     }
   };
 

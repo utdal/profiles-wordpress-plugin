@@ -33,29 +33,35 @@ extract($profile_options);
             </ul>
             <?php endif; ?>
             <?php if ($show_appointments): ?>
-            <h4>Appointments</h4>
-            <ul class="profile-appointments">
-                <li class="item-template">
-                    <span data-item-text="appointment"></span> - <span data-item-text="organization"></span> [<span data-item-text="start_date"></span> - <span data-item-text="end_date"></span>]
-                </li>
-            </ul>
+            <div class="section-container">
+              <h4>Appointments</h4>
+              <ul class="profile-appointments">
+                  <li class="item-template">
+                      <span data-item-text="appointment"></span> - <span data-item-text="organization"></span> [<span data-item-text="start_date"></span> - <span data-item-text="end_date"></span>]
+                  </li>
+              </ul>
+            </div>
             <?php endif; ?>
             <?php if ($show_support): ?>
-            <h4>Support</h4>
-            <ul class="profile-support">
-                <li class="item-template">
-                    <span data-item-text="title"></span> <strong>$<span data-item-text="amount"></span></strong> - <i><span data-item-text="sponsor"></span></i> (<span data-item-text="start_date"></span> - <span data-item-text="end_date"></span>)
-                </li>
-            </ul>
+            <div class="section-container">
+              <h4>Support</h4>
+              <ul class="profile-support">
+                  <li class="item-template">
+                      <span data-item-text="title"></span> <strong>$<span data-item-text="amount"></span></strong> - <i><span data-item-text="sponsor"></span></i> (<span data-item-text="start_date"></span> - <span data-item-text="end_date"></span>)
+                  </li>
+              </ul>
+            </div>
             <?php endif; ?>
 
             <?php if ($show_publications): ?>
-            <h4>Publications</h4>
-            <ul class="profile-publications">
-                <li class="item-template">
-                    <span data-item-text="name"></span> [<span data-item-text="year"></span>]
-                </li>
-            </ul>
+            <div class="section-container">
+              <h4>Publications</h4>
+              <ul class="profile-publications">
+                  <li class="item-template">
+                      <span data-item-text="title"></span> [<span data-item-text="year"></span>]
+                  </li>
+              </ul>
+            <div>
             <?php endif; ?>
       </div>
     </div>
