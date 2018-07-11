@@ -18,9 +18,9 @@ var profile_reader = (function($, undefined) {
   var publications_only = false;
   var publication_limit = 10;
 
-  var init = function() {
-    $profile_template = $('.profiles-plugin.profile');
-    $profile_container = $('.profiles-plugin.container');
+  var init = function(container) {
+    $profile_container = $(container);
+    $profile_template = $profile_container.find('.profiles-plugin.profile');
     publications_only = $profile_template.data('publications-only') === 1;
     publication_limit = parseInt($profile_template.data('publication-limit')) || publication_limit;
 
@@ -31,21 +31,19 @@ var profile_reader = (function($, undefined) {
       for(i = 0; i < persons.length; i++){
         $profile_template.clone().attr('id', persons[i]).appendTo($profile_container);
         escaped_person = persons[i].replace('.', '\\.');
-        $name_section[persons[i]] = $profile_container.find('#' + escaped_person).find('.profile-name a');
-        $image_section[persons[i]] = $profile_container.find('#' + escaped_person).find('.profile-image');
-        $url_element[persons[i]] = $profile_container.find('#' + escaped_person).find('.profile-url');
-        $info_section[persons[i]] = $profile_container.find('#' + escaped_person).find('.contact-info');
-        $preperation_section[persons[i]] = $profile_container.find('#' + escaped_person).find('.profile-preparations');
-        $appointment_section[persons[i]] = $profile_container.find('#' + escaped_person).find('.profile-appointments');
-        $publication_section[persons[i]] = $profile_container.find('#' + escaped_person).find('.profile-publications');
-        $support_section[persons[i]] = $profile_container.find('#' + escaped_person).find('.profile-support');
-        $awards_section[persons[i]] = $profile_container.find('#' + escaped_person).find('.profile-awards');
+        $name_section[persons[i]] = $profile_container.find('#' + escaped_person + ' .profile-name a');
+        $image_section[persons[i]] = $profile_container.find('#' + escaped_person + ' .profile-image');
+        $url_element[persons[i]] = $profile_container.find('#' + escaped_person + ' .profile-url');
+        $info_section[persons[i]] = $profile_container.find('#' + escaped_person + ' .contact-info');
+        $preperation_section[persons[i]] = $profile_container.find('#' + escaped_person + ' .profile-preparations');
+        $appointment_section[persons[i]] = $profile_container.find('#' + escaped_person + ' .profile-appointments');
+        $publication_section[persons[i]] = $profile_container.find('#' + escaped_person + ' .profile-publications');
+        $support_section[persons[i]] = $profile_container.find('#' + escaped_person + ' .profile-support');
+        $awards_section[persons[i]] = $profile_container.find('#' + escaped_person + ' .profile-awards');
       }
       $profile_template.hide()
-      return true;
+      this.get(api_url);
     }
-
-    return false;
   };
 
   var makeDataList = function (data, type, $target) {
@@ -55,7 +53,7 @@ var profile_reader = (function($, undefined) {
       for (var i = 0; i < data.length; i++) {
         if (data[i].type === type) {
           var data_content = data[i].data;
-          if (type === "publications" && publications_only){
+          if (publications_only && type === "publications"){
             all_pubs.push(data_content);
             continue;
           }
@@ -139,7 +137,6 @@ var profile_reader = (function($, undefined) {
   var handleResults = function(results) {
     if (typeof results === 'object' && results.hasOwnProperty('profile')) {
       for (var k = 0; k < results.profile.length; k++) {
-
         setPublications(results.profile[k]);
 
         if(!publications_only){
@@ -151,7 +148,8 @@ var profile_reader = (function($, undefined) {
             setAwards(results.profile[k]);
             setAppointments(results.profile[k]);
             setSupport(results.profile[k]);
-            $('#' + results.profile[k].slug.replace('.', '\\.')).appendTo($profile_container).show();
+            profile = $profile_container.find('#' + results.profile[k].slug.replace('.', '\\.'));
+            profile.appendTo(profile.parent()).show();
         }
 
       }
@@ -178,7 +176,7 @@ var profile_reader = (function($, undefined) {
   };
 
   // GET the profile data from the API
-  var get = function() {
+  var get = function(api_url) {
     $.ajax({
       url: api_url,
       type: 'GET',
@@ -187,6 +185,7 @@ var profile_reader = (function($, undefined) {
         with_data: '1',
       },
       dataType: 'json',
+      async: false,
       success: handleResults,
       error: showAjaxError,
     });
@@ -202,8 +201,8 @@ var profile_reader = (function($, undefined) {
 // On Page Load, get the specified profiles
 jQuery(document).ready(function($) {
 
-  if (profile_reader.init()) {
-    profile_reader.get();
-  }
+  $('.profiles-plugin.container').each(function(){
+      profile_reader.init(this);
+  });
 
 });

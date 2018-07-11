@@ -61,7 +61,7 @@ extract($profile_options);
                       <span data-item-text="title"></span> [<span data-item-text="year"></span>]
                   </li>
               </ul>
-            <div>
+            </div>
             <?php endif; ?>
       </div>
     </div>
