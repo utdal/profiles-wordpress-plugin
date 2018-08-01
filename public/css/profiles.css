@@ -12,7 +12,7 @@ Profiles Plugin CSS (generated from Sass)
 .profiles-plugin.profile .info {
   float: left;
   margin-left: 20px;
-  width: 70%;
+  width: 65%;
   margin-bottom: 30px;
 }
 .profiles-plugin.profile ul{
@@ -30,7 +30,7 @@ Profiles Plugin CSS (generated from Sass)
 }
 .profiles-plugin.profile .profile-image {
   float: left;
-  width: 20%;
+  width: 25%;
   height: auto;
   margin-bottom: 30px;
 }
@@ -55,6 +55,19 @@ ul.profile-appointments li{
   overflow-y: scroll;
   margin-bottom: 20px;
   font-size: 12px;
+}
+
+@media screen and (max-width: 480px) {
+  .profiles-plugin.profile .profile-image {
+    width: 200px;
+    margin-bottom: 10px;
+  }
+
+  .profiles-plugin.profile .info {
+    width: 100%;
+    margin-left: 0px;
+  }
+
 }
 
 

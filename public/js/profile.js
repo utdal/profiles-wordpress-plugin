@@ -201,7 +201,7 @@ var profile_reader = (function($, undefined) {
 // On Page Load, get the specified profiles
 jQuery(document).ready(function($) {
 
-  $('.profiles-plugin.container').each(function(){
+  $('.profiles-plugin.profiles-container').each(function(){
       profile_reader.init(this);
   });
 

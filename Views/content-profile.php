@@ -2,7 +2,7 @@
 extract($profile_options);
 ?>
 <!-- Profile Template -->
-<div class="profiles-plugin container">
+<div class="profiles-plugin profiles-container">
     <div id="publication-container"></div>
     <div class="profiles-plugin profile" data-person="<?= $person ?>" data-api-url="<?= $api ?>"  data-publications-only="<?= $publications_only ?>" data-publication-limit="<?= $publication_limit ?>" style="display:none;">
         <?php if ($show_image): ?>
