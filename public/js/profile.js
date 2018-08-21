@@ -160,9 +160,9 @@ var profile_reader = (function($, undefined) {
           });
           $.each(all_pubs.slice(0, publication_limit), function(key, pub){
               if(pub.url){
-                  $('#publication-container').append('<a href="' + pub.url + '" target="_blank">' + pub.title + '</a> [' + pub.year + ']<br>');
+                  $('#publication-container').append('<p class="profile-publication"><a href="' + pub.url + '" target="_blank">' + pub.title + '</a> [' + pub.year + ']</p>');
               }else{
-                  $('#publication-container').append( pub.title + ' [' + pub.year + ']<br>');
+                  $('#publication-container').append('<p class="profile-publication">' + pub.title + ' [' + pub.year + ']</p>');
               }
           });
       }
