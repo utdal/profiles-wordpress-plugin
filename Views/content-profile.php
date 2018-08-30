@@ -4,6 +4,13 @@ extract($profile_options);
 <!-- Profile Template -->
 <div class="profiles-plugin profiles-container">
     <div id="publication-container"></div>
+    <?php if ($show_filter): ?> 
+        <div id="filter-container">
+            <select id='filter-selector'>
+                <option value="">--Filter by--</option>
+            </select>
+        </div>
+    <?php endif; ?>
     <div class="profiles-plugin profile" data-person="<?= $person ?>" data-api-url="<?= $api ?>"  data-publications-only="<?= $publications_only ?>" data-publication-limit="<?= $publication_limit ?>" style="display:none;">
         <?php if ($show_image): ?>
             <div class="profile-image"></div>
@@ -18,6 +25,9 @@ extract($profile_options);
                     <span data-item-text="email"></span> | <span data-item-text="location"></span> | <span data-item-text="phone"></span>
                 </li>
             </ul>
+            <?php if ($show_tags): ?>
+                <div class="profile-tags"></div>
+            <?php endif; ?>
             <?php if ($show_preparation): ?>
             <ul class="profile-preparations">
                 <li class="item-template">

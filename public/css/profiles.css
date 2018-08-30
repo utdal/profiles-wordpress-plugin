@@ -34,6 +34,20 @@ Profiles Plugin CSS (generated from Sass)
   height: auto;
   margin-bottom: 30px;
 }
+#filter-container{
+  margin-bottom: 5px;
+  float: right;
+}
+.profile-tags{
+  margin-bottom: 5px;
+}
+.profile-tags span{
+  padding: 2px 5px;
+  margin: 2px;
+  background-color: lightgrey;
+  font-size: 10px;
+  border-radius: 5px;
+}
 ul.profile-preparations li{
   list-style-type: square;
   color: grey;
@@ -57,7 +71,7 @@ ul.profile-appointments li{
   font-size: 12px;
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 768px) {
   .profiles-plugin.profile .profile-image {
     width: 200px;
     margin-bottom: 10px;
@@ -67,7 +81,9 @@ ul.profile-appointments li{
     width: 100%;
     margin-left: 0px;
   }
-
+  #filter-container{
+    float: none;
+  }
 }
 
 
