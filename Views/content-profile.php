@@ -5,13 +5,13 @@ extract($profile_options);
 <div class="profiles-plugin profiles-container">
     <div id="publication-container"></div>
     <?php if ($show_filter): ?> 
-        <div id="filter-container">
-            <select id='filter-selector'>
+        <div class="filter-container">
+            <select class='filter-selector'>
                 <option value="">--Filter by--</option>
             </select>
         </div>
     <?php endif; ?>
-    <div class="profiles-plugin profile" data-person="<?= $person ?>" data-api-url="<?= $api ?>"  data-publications-only="<?= $publications_only ?>" data-publication-limit="<?= $publication_limit ?>" style="display:none;">
+    <div class="profiles-plugin profile" data-person="<?= $person ?>" data-api-url="<?= $api ?>"  data-publications-only="<?= $publications_only ?>" data-publication-limit="<?= $publication_limit ?>" data-allowed-tags="<?= $allowed_tags ?>" style="display:none;">
         <?php if ($show_image): ?>
             <div class="profile-image"></div>
         <?php endif; ?>

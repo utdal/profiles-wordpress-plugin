@@ -34,7 +34,7 @@ Profiles Plugin CSS (generated from Sass)
   height: auto;
   margin-bottom: 30px;
 }
-#filter-container{
+.filter-container{
   margin-bottom: 5px;
   float: right;
 }

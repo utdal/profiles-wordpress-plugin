@@ -17,6 +17,7 @@ var profile_reader = (function($, undefined) {
   var $awards_section = [];
   var all_pubs = [];
   var all_tags = [];
+  var allowed_tags = [];
   var $filter_container;
   var publications_only = false;
   var publication_limit = 10;
@@ -24,7 +25,8 @@ var profile_reader = (function($, undefined) {
   var init = function(container) {
     $profile_container = $(container);
     $profile_template = $profile_container.find('.profiles-plugin.profile');
-    $filter_container = $profile_container.find('#filter-container');
+    $filter_container = $profile_container.find('.filter-container');
+    allowed_tags = $profile_template.data('allowed-tags').split(';').filter(Boolean);
     publications_only = $profile_template.data('publications-only') === 1;
     publication_limit = parseInt($profile_template.data('publication-limit')) || publication_limit;
 
@@ -142,9 +144,11 @@ var profile_reader = (function($, undefined) {
       // makeDataList(profile.tags, 'tags', $tags_section[profile.slug]);
       var $profile = $tags_section[profile.slug].parents('.profile');
       for (var i = 0; i < profile.tags.length; i++){
-        $tags_section[profile.slug].append('<span class="profile-tag ' + profile.tags[i].slug.en + '">' + profile.tags[i].name.en + '</span>');
-        $profile.addClass(profile.tags[i].slug.en);
-        all_tags[profile.tags[i].slug.en] = profile.tags[i].name.en;
+        if(allowed_tags.length == 0 || allowed_tags.includes(profile.tags[i].slug.en)){
+          $tags_section[profile.slug].append('<span class="profile-tag ' + profile.tags[i].slug.en + '">' + profile.tags[i].name.en + '</span>');
+          $profile.addClass(profile.tags[i].slug.en);
+          all_tags[profile.tags[i].slug.en] = profile.tags[i].name.en;
+        }
       }
     }
   }
@@ -175,10 +179,11 @@ var profile_reader = (function($, undefined) {
       Object.keys(all_tags).sort().forEach(function(key){
           sorted_tags[key] = all_tags[key];
       });
-      var tag_selector = $filter_container.find('#filter-selector');
+      var tag_selector = $filter_container.find('.filter-selector');
       for (var slug in sorted_tags){
         tag_selector.append('<option value="' + slug + '">' + sorted_tags[slug] + '</select>');
       }
+      all_tags = [];
 
       if(publications_only){
           all_pubs.sort(function(a, b){
@@ -233,14 +238,12 @@ jQuery(document).ready(function($) {
       profile_reader.init(this);
   });
 
-  $('#filter-selector').on('change', function(){
-    console.log(this.value);
-    $('.profiles-plugin.profile').show();
-    if(this.value != ''){
-      $('.profiles-plugin.profile:not(.' + this.value + ')').each(function(){
-        $(this).hide();
-      });
-    }
+  $('.filter-selector').on('change', function(){
+      var container = $(this).parents('.profiles-plugin.profiles-container')
+      container.find('.profiles-plugin.profile').show();
+      if(this.value){
+        container.find('.profiles-plugin.profile:not(.' + this.value + ')').hide();
+      }
   });
 
 });
