@@ -36,7 +36,7 @@ var profile_reader = (function($, undefined) {
       api_url = $profile_template.data('api-url');
       for(i = 0; i < persons.length; i++){
         $profile_template.clone().attr('id', persons[i]).appendTo($profile_container);
-        escaped_person = persons[i].replace('.', '\\.');
+        escaped_person = persons[i].split('.').join('\\.');
         $name_section[persons[i]] = $profile_container.find('#' + escaped_person + ' .profile-name a');
         $image_section[persons[i]] = $profile_container.find('#' + escaped_person + ' .profile-image');
         $url_element[persons[i]] = $profile_container.find('#' + escaped_person + ' .profile-url');
@@ -70,6 +70,10 @@ var profile_reader = (function($, undefined) {
                         var $template_item = $(this);
                         $template_item.text(data_content[$template_item.data('item-text')] ? data_content[$template_item.data('item-text')] : "");
                     });
+                    $list_item_template.find('[data-item-url]').each(function() {
+                        var $template_item = $(this);
+                        $template_item.attr('href', (data_content[$template_item.data('item-url')] ? data_content[$template_item.data('item-url')] : ""));
+                    });
                     $list_item_template.appendTo($target);
                 }
             }
@@ -92,7 +96,7 @@ var profile_reader = (function($, undefined) {
   };
 
   var setLink = function(profile) {
-    if (profile.url && $url_element[profile.slug].length > 0) {
+    if (profile.url && profile.public && $url_element[profile.slug].length > 0) {
       $url_element[profile.slug].attr('href', profile.url);
     }
   };
@@ -169,7 +173,7 @@ var profile_reader = (function($, undefined) {
             setAwards(results.profile[k]);
             setAppointments(results.profile[k]);
             setSupport(results.profile[k]);
-            profile = $profile_container.find('#' + results.profile[k].slug.replace('.', '\\.'));
+            profile = $profile_container.find('#' + results.profile[k].slug.split('.').join('\\.'));
             profile.appendTo(profile.parent()).show();
         }
 

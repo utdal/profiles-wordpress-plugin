@@ -23,6 +23,7 @@ extract($profile_options);
                 <li class="item-template">
                     <strong><span data-item-text="title"></span></strong><br>
                     <span data-item-text="email"></span> | <span data-item-text="location"></span> | <span data-item-text="phone"></span>
+                    <a data-item-text="url_name" data-item-url="url"></a>
                 </li>
             </ul>
             <?php if ($show_tags): ?>
