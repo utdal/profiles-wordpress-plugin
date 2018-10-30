@@ -41,11 +41,13 @@ Profiles Plugin CSS (generated from Sass)
 .profile-tags{
   margin-bottom: 5px;
 }
-.profile-tags span{
-  padding: 2px 5px;
+.profile-tags .profile-tag {
+  display: inline-block;
+  padding: 1px 5px;
   margin: 2px;
   background-color: lightgrey;
   font-size: 10px;
+  line-height: 1rem;
   border-radius: 5px;
 }
 ul.profile-preparations li{
