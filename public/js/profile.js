@@ -72,7 +72,7 @@ var profile_reader = (function($, undefined) {
                     });
                     $list_item_template.find('[data-item-url]').each(function() {
                         var $template_item = $(this);
-                        $template_item.attr('href', (data_content[$template_item.data('item-url')] ? data_content[$template_item.data('item-url')] : ""));
+                        $template_item.attr('href', (data_content[$template_item.data('item-url')] ? (($template_item.data('item-url-prefix') || '') + data_content[$template_item.data('item-url')]) : ""));
                     });
                     $list_item_template.appendTo($target);
                 }

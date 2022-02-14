@@ -22,7 +22,11 @@ extract($profile_options);
             <ul class="contact-info">
                 <li class="item-template">
                     <strong><span data-item-text="title"></span></strong><br>
-                    <span data-item-text="email"></span> | <span data-item-text="location"></span> | <span data-item-text="phone"></span>
+                    <?php if ($show_mailto): ?>
+                        <a data-item-text="email" data-item-url-prefix="mailto:" data-item-url="email"></a>
+                    <?php else: ?>
+                        <span data-item-text="email"></span>
+                    <?php endif; ?> | <span data-item-text="location"></span> | <span data-item-text="phone"></span>
                     <a data-item-text="url_name" data-item-url="url"></a>
                 </li>
             </ul>
