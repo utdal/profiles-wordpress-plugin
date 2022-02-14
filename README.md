@@ -24,7 +24,4 @@ If you want to override how the profile is displayed, then copy `Views/content-p
 
 ## Development
 
-### CSS / Sass
-
-- Pull in the compilation dependencies: `yarn install`
-- Run the compiler: `gulp`
+Be sure to update `Profiles\VERSION` in `profiles.php`.
