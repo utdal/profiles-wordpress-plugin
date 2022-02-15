@@ -4,23 +4,114 @@ This is a WordPress plugin designed to pull in data from a profile API and displ
 
 ## Installation
 
-### Manual
+This plugin can be installed normally just like any other WordPress plugin. Alternatively, you can also install it with Composer.
 
-Copy into the WordPress plugins folder. Activate via WordPress Dashboard > Plugins
+### Regular Install
 
-### Composer
+- Download the repository as a zip archive, and place it in your WordPress plugins folder.
+- Activate the plugin in the admin panel
 
-TBD
+### Composer Install
 
-## Usage
+If you're managing your plugins with [Composer](https://getcomposer.org), this plugin can be installed with something like the following in your `composer.json` file:
+
+```json
+{
+  "repositories": [
+    {
+      "url": "git@github.com:utdallasresearch/profiles-wordpress-plugin.git",
+      "type": "git"
+    }
+  ],
+  "config": {
+    "allow-plugins": {
+      "composer/installers": true
+    }
+  },
+  "require": {
+    "composer/installers": "^1.3.0",
+    "utdallasresearch/profiles-wordpress-plugin": "dev-master"
+  },
+  "extra": {
+    "installer­paths" : {
+      "wp-content/plugins/{$name}/" : ["type:wordpress­-plugin"]
+    }
+  }
+}
+
+```
+
+## Shortcode Usage
 
 Just add the shortcode to a page:
 
-`[profile person="user.slug" show_name="true" show_image="true" show_url="true" show_publications="true" show_support="true" show_awards="true" api="https://url.example/api"]`
+`[profile person="person1;person2;person3"]`
 
-(The defaults for all of the `show_x` attributes are true.)
+Additional Shortcode Attributes:
 
-If you want to override how the profile is displayed, then copy `Views/content-profile.php` to `<your theme folder>/template-parts/content-profile.php` and modify as desired. Do not change the CSS class names, however, because this is how the JS identifies where to insert the API data.
+| Option        | Default  | Description |
+| ------------- | -------- | ----------- |
+| person=             | ""      | semicolon-delimited list of profile slugs to display |
+| show_name=          | "true"  | show the profile name |
+| show_image=         | "true"  | show the profile image |
+| show_tags=          | "true"  | show the profile tags |
+| show_mailto=        | "false" | show the email address as a mailto link |
+| show_preparation=   | "true"  | show the profile preparation section |
+| show_awards=        | "true"  | show the profile awards section |
+| show_appointments=  | "true"  | show the profile appointments section |
+| show_publications=  | "true"  | show the profile publications section |
+| show_support=       | "true"  | show the profile support section |
+| show_filter=        | "false" | show the dropdown tag filter |
+| allowed_tags=       | ""      | semicolon-delimited list of whitelisted tags to show |
+| publications_only=  | "false" | instead of profile info, only show publications |
+| publication_limit=  | "10"    | limit the number of publications per profile to display |
+| api=                | ""      | the API URL from which to fetch profile data, e.g. (https://example.com/api/v1) |
+
+## Customizing Display
+
+If you want to override how the profile DOM is displayed, then copy `Views/content-profile.php` to `<your theme folder>/template-parts/content-profile.php` and modify as desired. Do not change the CSS class names or data-attributes, however, because this is how the JS identifies where to insert the API data.
+
+In addition, you can use theme CSS or the WordPress customizer 'Custom CSS' on a given site.
+
+## JavaScript events
+
+This plugin dispatches the following JavaScript events on the `.profiles-container` element. jQuery examples of usage are shown:
+
+- **"profiles:fetching"** - Dispatched immediately before attempting to fetch the profile data from the API.
+
+```javascript
+$('.profiles-container').on('profiles:fetching', (e) => {
+  $(e.target).prepend('<p class="loading">Loading...</p>');
+});
+```
+- **"profiles:fetched"** - Dispatched after profile data is successfully fetched from the API, but before the data is displayed. The results object is exposed so that it can be used or modified.
+
+```javascript
+$('.profiles-container').on('profiles:fetched', (e, results) => {
+  $(e.target).find('.loading').remove();
+  let p = results.profile.find(profile => profile.name === 'Rick Astley');
+  if (p) {
+    p.url = 'https://www.youtube.com/watch?v=dQw4w9WgXcQ';
+    p.information[0].data.title = 'Cool Dude';
+  };
+});
+```
+
+- **"profiles:filtering"** - Dispatched immediately before filtering the displayed profiles (using the dropdown menu). The filter tag slug string is exposed so that it can be used or modified.
+
+```javascript
+$('.profiles-container').on('profiles:filtering', (e, tag) => {
+  console.log(`Filtering by ${tag}`);
+});
+```
+
+- **"profiles:filtered"** - Dispatched immediately after filtering the displayed profiles (using the dropdown menu). The filter tag slug string is exposed so that it can be used.
+
+```javascript
+$('.profiles-container').on('profiles:filtered', (e, tag) => {
+  console.log(`Filtered by ${tag}`);
+});
+```
 
 ## Development
 
