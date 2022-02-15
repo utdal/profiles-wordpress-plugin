@@ -48,7 +48,8 @@ var profile_reader = (function($, undefined) {
         $support_section[persons[i]] = $profile_container.find('#' + escaped_person + ' .profile-support');
         $awards_section[persons[i]] = $profile_container.find('#' + escaped_person + ' .profile-awards');
       }
-      $profile_template.hide()
+      $profile_template.hide();
+      $profile_container.trigger('profiles:fetching');
       this.get(api_url);
     }
   };
@@ -160,6 +161,7 @@ var profile_reader = (function($, undefined) {
   // Handle the returned API results
   var handleResults = function(results) {
     if (typeof results === 'object' && results.hasOwnProperty('profile')) {
+      $profile_container.trigger('profiles:fetched', results);
       for (var k = 0; k < results.profile.length; k++) {
         setPublications(results.profile[k]);
 
@@ -243,11 +245,13 @@ jQuery(document).ready(function($) {
   });
 
   $('.filter-selector').on('change', function(){
-      var container = $(this).parents('.profiles-plugin.profiles-container')
+      var container = $(this).parents('.profiles-plugin.profiles-container');
+      container.trigger('profiles:filtering', this.value);
       container.find('.profiles-plugin.profile').show();
       if(this.value){
         container.find('.profiles-plugin.profile:not(.' + this.value + ')').hide();
       }
+      container.trigger('profiles:filtered', this.value);
   });
 
 });
