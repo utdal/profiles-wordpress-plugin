@@ -21,13 +21,41 @@ extract($profile_options);
             <?php endif; ?>
             <ul class="contact-info">
                 <li class="item-template">
-                    <strong><span data-item-text="title"></span></strong><br>
+                    <?php if ($show_title): ?>
+                        <strong class="primary_title"><span data-item-text="title"></span></strong><br>
+                    <?php endif; ?>
+                    <?php if ($show_secondary_title): ?>
+                        <div class="secondary_title"><strong data-item-text="secondary_title"></strong></div>
+                    <?php endif; ?>
+                    <?php if ($show_tertiary_title): ?>
+                        <div class="tertiary_title"><strong data-item-text="tertiary_title"></strong></div>
+                    <?php endif; ?>
                     <?php if ($show_mailto): ?>
                         <a data-item-text="email" data-item-url-prefix="mailto:" data-item-url="email"></a>
                     <?php else: ?>
                         <span data-item-text="email"></span>
-                    <?php endif; ?> | <span data-item-text="location"></span> | <span data-item-text="phone"></span>
-                    <a data-item-text="url_name" data-item-url="url"></a>
+                    <?php endif; ?>
+                    <?php if ($show_location): ?>
+                        <span class="profile-location" data-item-text="location"></span>
+                    <?php endif; ?>
+                    <?php if ($show_phone): ?>
+                        <span class="profile-phone" data-item-text="phone"></span>
+                    <?php endif; ?>
+                    <?php if ($show_url): ?>
+                        <a class="profile-link primary" data-item-text="url_name" data-item-url="url"></a>
+                    <?php endif; ?>
+                    <?php if ($show_secondary_url): ?>
+                        <a class="profile-link secondary" data-item-text="secondary_url_name" data-item-url="secondary_url"></a>
+                    <?php endif; ?>
+                    <?php if ($show_tertiary_url): ?>
+                        <a class="profile-link tertiary" data-item-text="tertiary_url_name" data-item-url="tertiary_url"></a>
+                    <?php endif; ?>
+                    <?php if ($show_quaternary_url): ?>
+                        <a class="profile-link quaternary" data-item-text="quaternary_url_name" data-item-url="quaternary_url"></a>
+                    <?php endif; ?>
+                    <?php if ($show_quinary_url): ?>
+                        <a class="profile-link quinary" data-item-text="quinary_url_name" data-item-url="quinary_url"></a>
+                    <?php endif; ?>
                 </li>
             </ul>
             <?php if ($show_tags): ?>

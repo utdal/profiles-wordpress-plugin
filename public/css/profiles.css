@@ -1,8 +1,6 @@
-/*!
-Profiles Plugin CSS (generated from Sass)
+/*
+Profiles Plugin CSS
 */
-/** Variables */
-/** Sass styles for publications */
 .profiles-plugin.profile .item-template {
   display: none;
 }
@@ -28,6 +26,14 @@ Profiles Plugin CSS (generated from Sass)
 .profiles-plugin.profile .contact-info li{
   list-style: none;
 }
+
+.profiles-plugin.profile [data-item-text="location"]:not(:empty),
+.profiles-plugin.profile [data-item-text="phone"]:not(:empty),
+.profiles-plugin.profile a.profile-link:not(:empty) {
+  padding-left: 0.33em;
+  border-left: 1px solid;
+}
+
 .profiles-plugin.profile .profile-image {
   float: left;
   width: 25%;

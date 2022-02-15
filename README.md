@@ -54,6 +54,16 @@ Additional Shortcode Attributes:
 | person=             | ""      | semicolon-delimited list of profile slugs to display |
 | show_name=          | "true"  | show the profile name |
 | show_image=         | "true"  | show the profile image |
+| show_title=           | "true"  | show the profile primary title |
+| show_secondary_title= | "false" | show the profile secondary title |
+| show_tertiary_title=  | "false" | show the profile tertiary title |
+| show_location=        | "true"  | show the profile location |
+| show_phone=           | "true"  | show the profile phone |
+| show_url=             | "true"  | show the profile primary url |
+| show_secondary_url=   | "false" | show the profile secondary url |
+| show_tertiary_url=    | "false" | show the profile tertiary url |
+| show_quaternary_url=  | "false" | show the profile quaternary url |
+| show_quinary_url=     | "false" | show the profile quinary url |
 | show_tags=          | "true"  | show the profile tags |
 | show_mailto=        | "false" | show the email address as a mailto link |
 | show_preparation=   | "true"  | show the profile preparation section |
