@@ -19,7 +19,7 @@ If you're managing your plugins with [Composer](https://getcomposer.org), this p
 {
   "repositories": [
     {
-      "url": "git@github.com:utdallasresearch/profiles-wordpress-plugin.git",
+      "url": "git@github.com:utdal/profiles-wordpress-plugin.git",
       "type": "git"
     }
   ],
