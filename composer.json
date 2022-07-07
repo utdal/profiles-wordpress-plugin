@@ -1,9 +1,9 @@
 {
-    "name" : "utdallasresearch/profiles-wordpress-plugin",
+    "name" : "utdal/profiles-wordpress-plugin",
     "type" : "wordpress-plugin",
     "description": "Profiles Wordpress plugin",
     "keywords": ["research", "wordpress", "UT Dallas", "UTD", "profiles", "plugin", "publications"],
-    "homepage": "http://github.com/utdallasresearch/profiles-wordpress-plugin",
+    "homepage": "http://github.com/utdal/profiles-wordpress-plugin",
     "license": "MIT",
     "authors": [{
         "name": "Wun Chiou",
@@ -11,6 +11,6 @@
         "role": "Developer"
     }],
     "require": {
-        "php": ">=5.6"
+        "php": ">=7.4"
     }
 }

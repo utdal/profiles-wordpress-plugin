@@ -7,17 +7,17 @@
  * registers the activation and deactivation functions, and defines a function
  * that starts the plugin.
  *
- * @link              https://research.utdallas.edu/oris
+ * @link              https://research.utdallas.edu/
  * @since             1.0.0
- * @package           Re_mods
+ * @package           Research_profiles
  *
  * @wordpress-plugin
  * Plugin Name:       UT Dallas Research Profiles
- * Plugin URI:        https://github.com/utdallasresearch/profiles-wordpress-plugin
+ * Plugin URI:        https://github.com/utdal/profiles-wordpress-plugin
  * Description:       Adds research profiles shortcode.
  * Version:           1.3.0
  * Author:            UT Dallas Research Information Systems
- * Author URI:        https://research.utdallas.edu/oris
+ * Author URI:        https://research.utdallas.edu/
  * License:           MIT
  * License URI:       http://opensource.org/licenses/MIT
  * Text Domain:       profiles
