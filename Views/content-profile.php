@@ -56,6 +56,9 @@ extract($profile_options);
                     <?php if ($show_quinary_url): ?>
                         <a class="profile-link quinary" data-item-text="quinary_url_name" data-item-url="quinary_url"></a>
                     <?php endif; ?>
+                    <?php if ($show_summary): ?>
+                        <div class="profile-summary" data-item-text="profile_summary"></div>
+                    <?php endif; ?>
                 </li>
             </ul>
             <?php if ($show_tags): ?>

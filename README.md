@@ -64,6 +64,7 @@ Additional Shortcode Attributes:
 | show_tertiary_url=    | "false" | show the profile tertiary url |
 | show_quaternary_url=  | "false" | show the profile quaternary url |
 | show_quinary_url=     | "false" | show the profile quinary url |
+| show_summary=       | "false" | show the profile summary |
 | show_tags=          | "true"  | show the profile tags |
 | show_mailto=        | "false" | show the email address as a mailto link |
 | show_preparation=   | "true"  | show the profile preparation section |
