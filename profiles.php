@@ -15,7 +15,7 @@
  * Plugin Name:       UT Dallas Research Profiles
  * Plugin URI:        https://github.com/utdal/profiles-wordpress-plugin
  * Description:       Adds research profiles shortcode.
- * Version:           1.3.0
+ * Version:           1.4.0
  * Author:            UT Dallas Research Information Systems
  * Author URI:        https://research.utdallas.edu/
  * License:           MIT
@@ -23,7 +23,7 @@
  * Text Domain:       profiles
  * Domain Path:       /languages
  */
-define('Profiles\VERSION', '1.3.0');
+define('Profiles\VERSION', '1.4.0');
 
 // If this file is called directly, abort.
 if (!defined('WPINC')) {
