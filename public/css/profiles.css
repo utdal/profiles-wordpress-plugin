@@ -71,6 +71,9 @@ ul.profile-awards li{
 ul.profile-appointments li{
   font-size: 12px;
 }
+.profiles-plugin.profile .profile-summary {
+  margin: 10px 0;
+}
 .profiles-plugin.profile .profile-publications {
   max-height: 150px;
   overflow: hidden;
