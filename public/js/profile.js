@@ -92,7 +92,11 @@ var profile_reader = (function($, undefined) {
 
   var setImage = function(profile) {
     if (profile.image_url && $image_section[profile.slug].length > 0) {
-      $('<img src="' + profile.image_url + '" alt="profile image">').appendTo($image_section[profile.slug]);
+      const profile_image = new Image();
+      profile_image.src = profile.image_url;
+      profile_image.alt = profile.name ?? 'profile image';
+      profile_image.loading = 'lazy';
+      $image_section[profile.slug].append(profile_image);
     }
   };
 
